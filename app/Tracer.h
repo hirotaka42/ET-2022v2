@@ -1,21 +1,21 @@
-#include "Motor.h"       // <1>
-#include "ColorSensor.h" // <2>
-#include "util.h"        // <3>
+#include "Motor.h"
+#include "ColorSensor.h"
+#include "util.h"
 
-using namespace ev3api;  // <4>
+using namespace ev3api;
 
-class Tracer {  // <1>
+class Tracer {
 public:
   Tracer();
-  void run();       // <2>
+  void run();
   void init();
   void terminate();
 
 private:
   Motor leftWheel;
   Motor rightWheel;
-  ColorSensor colorSensor; // <3>
-  const int8_t mThreshold = 20;  // <4>
+  ColorSensor colorSensor;
+  const int8_t mThreshold = 20;
 #ifndef MAKE_RASPIKE
   const int8_t pwm = (Motor::PWM_MAX) / 6;
 #else
