@@ -14,8 +14,9 @@ void TraceArea::runTraceArea()
 {
   /* true:左エッジ,false:右エッジ */
   bool isLeftEdge;
-  /* Controller インスタンス作成 */
+  /* インスタンス作成 */
   Controller controller;
+  Measurer measurer;
   
   /* L/R コース別 エッジの設定 */
   if(IS_LEFT_COURSE) isLeftEdge = !IS_LEFT_COURSE;
@@ -26,7 +27,9 @@ void TraceArea::runTraceArea()
 
   tracer.init();
   controller.setLcdView("running...", 1);
-  while (!ev3_button_is_pressed(LEFT_BUTTON)){
+
+  /* EV3 正面 左の本体ボタンが押されるまで,ライントレースの実行 */
+  while (!measurer.ev3_LeftButtonIsPressed()){
     tracer.run();
     controller.wait(1000*10*4);
     /* 0.04秒 wait */
