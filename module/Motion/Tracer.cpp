@@ -12,12 +12,13 @@
 
 /**
  * @brief Construct a new Tracer:: Tracer object
- * 
+ * PORT_2 カラーセンサ/colorSensor
  */
 Tracer::Tracer(bool _isLeftEdge):
   isLeftEdge(_isLeftEdge),
-  colorSensor(PORT_2){
-  }
+  colorSensor(PORT_2)
+{
+}
 
 /**
  * @brief 
