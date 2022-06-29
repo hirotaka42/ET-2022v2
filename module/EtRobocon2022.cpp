@@ -24,11 +24,10 @@
  */
 void EtRobocon2022::start()
 {
-  Controller controller;
-  Tracer tracer;
   /* Controller インスタンス作成 */
-  controller.setLedColorOrange();
+  Controller controller;
   /* 初期化完了通知 LED */
+  controller.setLedColorOrange();
   controller.setLcdView("Go to the start, ready?",2);
   controller.wait(1000*1000*3);
   /* 3秒 wait */
@@ -36,15 +35,16 @@ void EtRobocon2022::start()
   if (_SIM)   controller.setLcdView("Hit SPACE bar to start",2);
   else        controller.setLcdView("Tap Touch Sensor to start",2);
 
-  tracer.init();
-  controller.setLcdView("running...", 1);
+  /* タッチセンサが押されるまで待機 */
   while (!ev3_button_is_pressed(LEFT_BUTTON)) {
-      tracer.run();
-      controller.wait(1000*10*4);
-      /* 0.04秒 wait */
+      controller.wait(1000*10*8);
+      /* 0.08秒 wait */
       /* 早すぎると処理が追いつかない為 */
   }
-  /* LEFT_BUTTON が押されたら停止 */
-  tracer.stop();
+
+  TraceArea::runTraceArea();
+
+  //シミュレータの場合,競技の終了を通知する
+  if(_SIM == 1) controller.notifyCompletedToSimulator();
 
 }
