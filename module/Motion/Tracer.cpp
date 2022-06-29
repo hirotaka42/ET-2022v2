@@ -16,8 +16,7 @@
  */
 Tracer::Tracer(bool _isLeftEdge):
   isLeftEdge(_isLeftEdge),
-  colorSensor(PORT_2),
-  touchSensor(PORT_1) {
+  colorSensor(PORT_2){
   }
 
 /**
@@ -51,15 +50,4 @@ void Tracer::run() {
     controller.setLeftMotorPwm(pwm);
     controller.setRightMotorPwm(0);
   }
-}
-
-/**
- * @brief タッチセンサの状態取得
- * 
- * @return true 
- * @return false 
- */
-bool Tracer::isPressed()
-{
-  return touchSensor.isPressed();
 }

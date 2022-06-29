@@ -24,8 +24,9 @@
  */
 void EtRobocon2022::start()
 {
-  /* Controller インスタンス作成 */
+  /* インスタンス作成 */
   Controller controller;
+  Measurer measurer;
   /* 初期化完了通知 LED */
   controller.setLedColorOrange();
   controller.setLcdView("Go to the start, ready?",2);
@@ -36,12 +37,12 @@ void EtRobocon2022::start()
   else        controller.setLcdView("Tap Touch Sensor to start",2);
 
   /* タッチセンサが押されるまで待機 */
-  while (!ev3_button_is_pressed(LEFT_BUTTON)) {
+  while (!measurer.isPressed()) {
       controller.wait(1000*10*8);
       /* 0.08秒 wait */
       /* 早すぎると処理が追いつかない為 */
   }
-
+  /* タッチセンサが押されたら処理を開始 */
   TraceArea::runTraceArea();
 
   //シミュレータの場合,競技の終了を通知する

@@ -8,10 +8,11 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#ifndef LINETRACEAREAJr_H
-#define LINETRACEAREAJr_H
+#ifndef TRACEAREA_H
+#define TRACEAREA_H
 #include "Tracer.h"
 
+#include "Measurer.h"
 #include "Controller.h"
 
 /**

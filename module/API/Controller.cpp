@@ -11,7 +11,13 @@
  * leftWheel (PORT_C), 
  * armMotor  (PORT_A)
  */
-Controller::Controller() : rightWheel(PORT_B), leftWheel(PORT_C), armMotor(PORT_A) {}
+Controller::Controller():
+  rightWheel(PORT_B),
+  leftWheel(PORT_C),
+  armMotor(PORT_A) 
+  {
+
+  }
 
 /**
  * @brief PWMが基準値に収まるように下限上限(-100~100)の設定
