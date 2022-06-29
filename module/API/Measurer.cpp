@@ -13,11 +13,11 @@
 
 /**
  * @brief Construct a new Measurer:: Measurer object
- * PORT_2 カラーセンサ
- * PORT_B 正面 右ホイール
- * PORT_C 正面 左ホイール
- * PORT_A カラーセンサ アームモータ
- * PORT_1 正面 右タッチセンサ
+ * PORT_2 カラーセンサ/colorSensor
+ * PORT_B 正面 右ホイール/rightWheel
+ * PORT_C 正面 左ホイール/leftWheel
+ * PORT_A カラーセンサのアームモータ/armMotor
+ * PORT_1 正面 右タッチセンサ/touchSensor
  */
 Measurer::Measurer():
   colorSensor(PORT_2),

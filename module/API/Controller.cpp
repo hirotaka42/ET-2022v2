@@ -7,17 +7,16 @@
 
 /**
  * @brief Construct a new Controller:: Controller object
- * rightWheel(PORT_B), 
- * leftWheel (PORT_C), 
- * armMotor  (PORT_A)
+ * PORT_B 正面 右ホイール/rightWheel
+ * PORT_C 正面 左ホイール/leftWheel
+ * PORT_A カラーセンサのアームモータ/armMotor
  */
 Controller::Controller():
   rightWheel(PORT_B),
   leftWheel(PORT_C),
   armMotor(PORT_A) 
-  {
-
-  }
+{
+}
 
 /**
  * @brief PWMが基準値に収まるように下限上限(-100~100)の設定
