@@ -8,7 +8,7 @@
 #define ETROBOCON2022_H
 
 #include "Controller.h"
-#include "Tracer.h"
+#include "TraceArea.h"
 
 class EtRobocon2022 {
  public:

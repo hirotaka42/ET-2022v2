@@ -1,7 +1,7 @@
 /**
  * @file Tracer.cpp
  * @author hirotaka42
- * @brief  ON/OFF制御でライントレースをするクラス
+ * @brief  ライントレースをするための制御クラス
  * @version 0.1
  * @date 2022-06-28
  * 
@@ -14,8 +14,10 @@
  * @brief Construct a new Tracer:: Tracer object
  * 
  */
-Tracer::Tracer():
-  colorSensor(PORT_2) {
+Tracer::Tracer(bool _isLeftEdge):
+  isLeftEdge(_isLeftEdge),
+  colorSensor(PORT_2),
+  touchSensor(PORT_1) {
   }
 
 /**
@@ -49,4 +51,15 @@ void Tracer::run() {
     controller.setLeftMotorPwm(pwm);
     controller.setRightMotorPwm(0);
   }
+}
+
+/**
+ * @brief タッチセンサの状態取得
+ * 
+ * @return true 
+ * @return false 
+ */
+bool Tracer::isPressed()
+{
+  return touchSensor.isPressed();
 }
