@@ -36,7 +36,7 @@ void EtRobocon2022::start()
 
   /* タッチセンサが押されるまで待機 */
   while (!measurer.isPressed()) {
-      controller.wait(1000*10*25);
+      controller.wait(250);
       /* 0.25秒 wait */
       /* 早すぎると処理が追いつかない為 */
   }

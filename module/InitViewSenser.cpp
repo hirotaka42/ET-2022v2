@@ -27,7 +27,7 @@ void InitViewSenser::start()
     sprintf(brightnessResult, "%d",measurer.getBrightness());
     /* ブリリアンスデータのLCD表示 */ 
     controller.setLcdView(brightnessResult,2);
-    controller.wait(1000*10*25);
+    controller.wait(250);
     /* 0.25秒 wait */
     /* 早すぎると処理が追いつかない為 */
   }
@@ -37,10 +37,10 @@ void InitViewSenser::start()
 
   
   controller.initLcd("Go to Ready?");
-  controller.wait(1000*100*5);
+  controller.wait(500);
   /* 0.5秒 wait */
   /* 初期化完了通知 LED */
   controller.setLedColorOrange();
-  controller.wait(1000*10*15);
-  /* 1.5秒 wait */
+  controller.wait(250);
+  /* 0.25秒 wait */
 }
