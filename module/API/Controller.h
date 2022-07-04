@@ -58,6 +58,9 @@ class Controller {
   /**
    * 自タスクスリープ
    * @param milliSec スリープ時間(ミリ秒)
+   * 1000 *   10  -> 0.01秒
+   * 1000 *  230  -> 0.23秒
+   * 1000 * 1500  -> 1.50秒
    */
   void wait(int milliSec = 10);
 

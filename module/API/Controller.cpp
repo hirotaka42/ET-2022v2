@@ -111,15 +111,14 @@ void Controller::offLedColor()
 
 /**
  * @brief スリープ時間(ミリ秒)
- * 1000*10 *  8  -> 0.08秒
- * 1000*10 * 25  -> 0.25秒
- * 1000*10 *150  -> 1.5 秒
- *
+ * 1000 *   10  -> 0.01秒
+ * 1000 *  230  -> 0.23秒
+ * 1000 * 1500  -> 1.50秒
  * @param milliSec 
  */
 void Controller::wait(int milliSec)
 {
-  clock.sleep(milliSec);
+  clock.sleep(1000*milliSec);
 }
 
 /**
