@@ -27,25 +27,27 @@ void EtRobocon2022::start()
   /* インスタンス作成 */
   Controller controller;
   Measurer measurer;
-  /* 初期化完了通知 LED */
-  controller.setLedColorOrange();
-  controller.setLcdView("Go to the start, ready?",2);
-  controller.wait(1000*1000*3);
-  /* 3秒 wait */
 
-  if (_SIM)   controller.setLcdView("Hit SPACE bar to start",2);
-  else        controller.setLcdView("Tap Touch Sensor to start",2);
+  /* センサー値を目視する為にLCDへ表示するクラスの呼び出し */
+  InitViewSenser::start();
+
+  if (_SIM)   controller.setLcdView("Hit SPACE bar to start",1);
+  else        controller.setLcdView("Tap to Start",1);
 
   /* タッチセンサが押されるまで待機 */
   while (!measurer.isPressed()) {
-      controller.wait(1000*10*8);
-      /* 0.08秒 wait */
+      controller.wait(250);
+      /* 0.25秒 wait */
       /* 早すぎると処理が追いつかない為 */
   }
+  /* LCD表示領域の初期化 */
+  for(int n=0;n<7;n++) controller.setLcdView("",n);
+
   /* タッチセンサが押されたら処理を開始 */
+  /* ON/OFF制御でライントレースをするクラスの呼び出し */
   TraceArea::runTraceArea();
 
-  //シミュレータの場合,競技の終了を通知する
+  /* シミュレータの場合,競技の終了を通知する */
   if(_SIM == 1) controller.notifyCompletedToSimulator();
 
 }

@@ -31,7 +31,7 @@ void TraceArea::runTraceArea()
   /* EV3 正面 左の本体ボタンが押されるまで,ライントレースの実行 */
   while (!measurer.ev3_LeftButtonIsPressed()){
     tracer.run();
-    controller.wait(1000*10*4);
+    controller.wait(40);
     /* 0.04秒 wait */
     /* 早すぎると処理が追いつかない為 */
   }

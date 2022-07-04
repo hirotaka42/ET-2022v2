@@ -9,6 +9,7 @@
 
 #include "Controller.h"
 #include "TraceArea.h"
+#include "InitViewSenser.h"
 
 class EtRobocon2022 {
  public:
