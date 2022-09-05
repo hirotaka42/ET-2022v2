@@ -15,7 +15,8 @@
 etrobo ディレクトリで以下のコマンドを実行するとデフォルトLコースでビルドされます
  ```
  # シュミレータ向け
- make app=ET-2022 sim up
+ # 実機向けのものは現在ビルド不可(理由不明)
+ # make app=ET-2022 sim up
  
  # 実機向け(ケーブルを繋いで実行)
  make app=ET-2022 up
@@ -35,8 +36,8 @@ make left app=ET-2022 up
 
 ```
 
-## 使用ポート一覧(実機)
-実機の使用ポートは2022年度版,組み立て手順書を元に接続しています。  
+## 本プロっグラムにおける使用ポート一覧(実機&SIM)
+実機の使用ポートは2022年度版,組み立て手順書を元にシュミレータと同じポートになるように`カラーセンサ`と`超音波センサ`の接続ポートを入れ替え接続しています。  
 >HackEV/HackSPi組み立て手順書(Build_Inst_M2.0.pdf)  
 >Release:2022-05-14 13:50
 
@@ -48,85 +49,7 @@ make left app=ET-2022 up
 |ポート |接続モータ |ケーブル長 |ポート |接続センサ| ケーブル長|
 |:-:|--|:-:|:-:|--|:-:|
 |PORT_A|アームモータ|35cm|PORT_1|タッチセンサ|35cm|
-|PORT_B|右モータ|25cm|PORT_2|カラーセンサ|25cm|
-|PORT_C|左モータ|25cm|PORT_3|超音波センサ|25cm|
+|PORT_B|右モータ|25cm|`PORT_3`|カラーセンサ|25cm|
+|PORT_C|左モータ|25cm|`PORT_2`|超音波センサ|25cm|
 |PORT_D|しっぽモータ|50cm|PORT_4|ジャイロセンサ|35cm|
 
-### API 使用ポート
-```vim:Measurer.cpp
-/**
- * @file Measurer.cpp
- * @author hirotaka42
- * @brief 計測に用いる関数をまとめたラッパークラス
- * @version 0.1
- * @date 2022-06-29
- * 
- * @copyright Copyright (c) 2022
- * 
- */
-#include "Measurer.h"
-
-/**
- * @brief Construct a new Measurer:: Measurer object
- * PORT_2 カラーセンサ/colorSensor
- * PORT_B 正面 右ホイール/rightWheel
- * PORT_C 正面 左ホイール/leftWheel
- * PORT_A カラーセンサのアームモータ/armMotor
- * PORT_1 正面 右タッチセンサ/touchSensor
- */
-Measurer::Measurer():
-  colorSensor(PORT_2),
-  rightWheel(PORT_B),
-  leftWheel(PORT_C),
-  armMotor(PORT_A),
-  touchSensor(PORT_1)
-{
-}
-```
-
-```vim:Controller.cpp
-/**
- * @file Controller.cpp
- * @brief モーター制御に用いる関数をまとめたラッパークラス
- * @author hirotaka42
- */
-#include "Controller.h"
-
-/**
- * @brief Construct a new Controller:: Controller object
- * PORT_B 正面 右ホイール/rightWheel
- * PORT_C 正面 左ホイール/leftWheel
- * PORT_A カラーセンサのアームモータ/armMotor
- */
-Controller::Controller():
-  rightWheel(PORT_B),
-  leftWheel(PORT_C),
-  armMotor(PORT_A) 
-{
-}
-```
-
-### Motion 使用ポート
-```vim:Tracer.cpp
-/**
- * @file Tracer.cpp
- * @author hirotaka42
- * @brief  ライントレースをするための制御クラス
- * @version 0.1
- * @date 2022-06-28
- * 
- * @copyright Copyright (c) 2022
- * 
- */
-#include "Tracer.h"
-
-/**
- * @brief Construct a new Tracer:: Tracer object
- * PORT_2 カラーセンサ/colorSensor
- */
-Tracer::Tracer(bool _isLeftEdge):
-  isLeftEdge(_isLeftEdge),
-  colorSensor(PORT_2)
-{
-}
-```
